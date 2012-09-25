@@ -10,3 +10,6 @@
 [submodule "cucumber.el"]
 	path = cucumber.el
 	url = https://github.com/michaelklishin/cucumber.el.git
+[submodule "emacs_chrome"]
+	path = emacs_chrome
+	url = https://github.com/stsquad/emacs_chrome.git

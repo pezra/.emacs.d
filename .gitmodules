@@ -1,0 +1,3 @@
+[submodule "Enhanced-Ruby-Mode"]
+	path = Enhanced-Ruby-Mode
+	url = https://github.com/jacott/Enhanced-Ruby-Mode.git

@@ -4,3 +4,6 @@
 [submodule "coffee-mode"]
 	path = coffee-mode
 	url = https://github.com/defunkt/coffee-mode.git
+[submodule "color-theme"]
+	path = color-theme
+	url = https://github.com/my8bird/emacs-color-theme.git

@@ -7,3 +7,6 @@
 [submodule "color-theme"]
 	path = color-theme
 	url = https://github.com/my8bird/emacs-color-theme.git
+[submodule "cucumber.el"]
+	path = cucumber.el
+	url = https://github.com/michaelklishin/cucumber.el.git

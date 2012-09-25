@@ -86,6 +86,7 @@
 (add-hook 'coffee-mode-hook 'whitespace-mode)
 (setq-default coffee-tab-width 2)
 
+(add-to-list 'load-path "~/.emacs.d/eproject")
 (require 'eproject)
 (require 'eproject-extras)
 

@@ -22,3 +22,18 @@
 [submodule "frame-fns"]
 	path = frame-fns
 	url = https://github.com/emacsmirror/frame-fns.git
+[submodule "gist.el"]
+	path = gist.el
+	url = https://github.com/defunkt/gist.el.git
+[submodule "gh.el"]
+	path = gh.el
+	url = https://github.com/sigma/gh.el.git
+[submodule "pcache"]
+	path = pcache
+	url = https://github.com/sigma/pcache.git
+[submodule "logito"]
+	path = logito
+	url = https://github.com/sigma/logito.git
+[submodule "tabulated-list.el"]
+	path = tabulated-list.el
+	url = https://github.com/sigma/tabulated-list.el.git

@@ -37,3 +37,6 @@
 [submodule "tabulated-list.el"]
 	path = tabulated-list.el
 	url = https://github.com/sigma/tabulated-list.el.git
+[submodule "magit"]
+	path = magit
+	url = https://github.com/magit/magit.git

@@ -64,3 +64,6 @@
 [submodule "shoulda-mode"]
 	path = shoulda-mode
 	url = git@github.com:pezra/shoulda-mode.git
+[submodule "zoom-frm"]
+	path = zoom-frm
+	url = https://github.com/emacsmirror/zoom-frm.git

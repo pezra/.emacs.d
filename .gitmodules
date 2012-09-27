@@ -67,3 +67,6 @@
 [submodule "zoom-frm"]
 	path = zoom-frm
 	url = https://github.com/emacsmirror/zoom-frm.git
+[submodule "wc-mode"]
+	path = wc-mode
+	url = git://github.com/bnbeckwith/wc-mode.git

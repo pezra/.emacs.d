@@ -93,6 +93,10 @@
 (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
 (add-hook 'feature-mode-hook 'flyspell-mode)
 
+;; Word count mode
+(require 'wc-mode)
+(setq-default wc-modeline-format "Wc[%tw]")
+
 ;; Markdown support
 (autoload 'markdown-mode "markdown-mode.el"
   "Major mode for editing Markdown files" t)
@@ -101,9 +105,11 @@
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-hook 'markdown-mode-hook 'flyspell-mode)
+(add-hook 'markdown-mode-hook 'wc-mode)
 
 ;; HTML mode
 (add-to-list 'auto-mode-alist '("\\.dryml$" . html-mode))
+(add-hook 'html-mode-hook 'wc-mode)
 
 ;; Ruby mode
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))

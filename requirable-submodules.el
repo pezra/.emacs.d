@@ -22,4 +22,4 @@
 
 ;; Add all subdirectories of .emacs.d to load path
 (mapc (lambda (dir) (add-to-ordered-list 'load-path  dir))
-      (directory-dirs "~/.emacs.d"))
+      (directory-dirs "~/.emacs.d" t))

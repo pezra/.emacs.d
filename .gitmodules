@@ -52,3 +52,6 @@
 [submodule "n3-mode"]
 	path = n3-mode
 	url = https://github.com/kurtjx/n3-mode-for-emacs
+[submodule "rspec-mode"]
+	path = rspec-mode
+	url = git@github.com:pezra/rspec-mode.git

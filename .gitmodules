@@ -16,3 +16,6 @@
 [submodule "eproject"]
 	path = eproject
 	url = https://github.com/jrockway/eproject.git
+[submodule "frame-cmds"]
+	path = frame-cmds
+	url = https://github.com/emacsmirror/frame-cmds.git

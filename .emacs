@@ -70,8 +70,6 @@
 (setq enh-ruby-program "/Users/pezra/.rvm/rubies/ruby-1.9.2-p290/bin/ruby") ; so that still works if ruby points to ruby1.8
 (require 'ruby-mode)
 
-(require 'rinari)
-
 (require 'rvm)
 (require 'rspec-mode)
 

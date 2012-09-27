@@ -49,3 +49,6 @@
 [submodule "nxml-mode"]
 	path = nxml-mode
 	url = https://github.com/emacsmirror/nxml.git
+[submodule "n3-mode"]
+	path = n3-mode
+	url = https://github.com/kurtjx/n3-mode-for-emacs

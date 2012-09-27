@@ -43,3 +43,6 @@
 [submodule "markdown-mode"]
 	path = markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "mode-compile"]
+	path = mode-compile
+	url = https://github.com/emacsmirror/mode-compile.git

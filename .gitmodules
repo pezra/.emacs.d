@@ -55,3 +55,6 @@
 [submodule "rspec-mode"]
 	path = rspec-mode
 	url = git@github.com:pezra/rspec-mode.git
+[submodule "rvm.el"]
+	path = rvm.el
+	url = https://github.com/senny/rvm.el.git

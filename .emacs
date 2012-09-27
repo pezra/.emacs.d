@@ -2,6 +2,8 @@
 	(concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
 
 (add-to-list 'load-path "~/.emacs.d")
+(load "requirable-submodules.el")
+
 
 ;; (tool-bar-mode nil)
 (scroll-bar-mode nil)
@@ -49,12 +51,10 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Color themes
-(add-to-list 'load-path ".emacs.d/color-theme")
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-high-contrast) 
 
-(add-to-list 'load-path ".emacs.d/magit")
 (require 'magit)
 
 
@@ -64,14 +64,12 @@
 
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
-(add-to-list 'load-path "~/.emacs.d/scala")
 (require 'scala-mode-auto)
 
 (add-to-list 'load-path "~/.emacs.d/Enhanced-Ruby-Mode") ; must be added after any path containing old ruby-mode
 (setq enh-ruby-program "/Users/pezra/.rvm/rubies/ruby-1.9.2-p290/bin/ruby") ; so that still works if ruby points to ruby1.8
 (require 'ruby-mode)
 
-(add-to-list 'load-path "~/.emacs.d/rinari")
 (require 'rinari)
 
 (require 'rvm)
@@ -81,12 +79,10 @@
 ;(setq-default shoulda-command "ruby %o '%f'") 
 ;(setq-default shoulda-command "bash -lic \"cd `dirname %f`; rvm debug; echo -------; env; echo PATH: $PATH; ruby %o '%f'\"") 
 
-(add-to-list 'load-path "~/.emacs.d/coffee-mode")
 (require 'coffee-mode)
 (add-hook 'coffee-mode-hook 'whitespace-mode)
 (setq-default coffee-tab-width 2)
 
-(add-to-list 'load-path "~/.emacs.d/eproject")
 (require 'eproject)
 (require 'eproject-extras)
 
@@ -95,7 +91,6 @@
 (add-hook 'css-mode-hook 'flyspell-prog-mode)
 
 ;; Cucumber support
-(add-to-list 'load-path "~/.emacs.d/cucumber.el")
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
 (add-hook 'feature-mode-hook 'flyspell-mode)
@@ -143,7 +138,6 @@
 (add-to-list 'auto-mode-alist '("\\.rng$" . nxml-mode))
 
 ;; gist
-(add-to-list 'load-path "~/.emacs.d/gist.el")
 (require 'gist)
 
 ;; N3

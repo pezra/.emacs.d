@@ -64,7 +64,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
-(require 'scala-mode-auto)
+(require 'scala-mode)
 
 (add-to-list 'load-path "~/.emacs.d/Enhanced-Ruby-Mode") ; must be added after any path containing old ruby-mode
 (setq enh-ruby-program "/Users/pezra/.rvm/rubies/ruby-1.9.2-p290/bin/ruby") ; so that still works if ruby points to ruby1.8

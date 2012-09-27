@@ -58,3 +58,6 @@
 [submodule "rvm.el"]
 	path = rvm.el
 	url = https://github.com/senny/rvm.el.git
+[submodule "scala-mode"]
+	path = scala-mode
+	url = https://github.com/haxney/scala-mode.git

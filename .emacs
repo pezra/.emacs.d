@@ -132,7 +132,7 @@
 (add-to-list 'auto-mode-alist '("\\.rnc$" . rnc-mode))
 
 ;; nXML mode
-(load "~/.emacs.d/nxml-mode/rng-auto.el")
+(require 'nxml-mode)
 (add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.xsl$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.rng$" . nxml-mode))

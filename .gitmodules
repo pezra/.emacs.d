@@ -46,3 +46,6 @@
 [submodule "mode-compile"]
 	path = mode-compile
 	url = https://github.com/emacsmirror/mode-compile.git
+[submodule "nxml-mode"]
+	path = nxml-mode
+	url = https://github.com/emacsmirror/nxml.git

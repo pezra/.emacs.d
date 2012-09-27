@@ -106,6 +106,8 @@
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-hook 'markdown-mode-hook 'flyspell-mode)
 (add-hook 'markdown-mode-hook 'wc-mode)
+(add-hook 'markdown-mode-hook 'longlines-mode)
+(add-hook 'markdown-mode-hook (lambda() (setq longlines-show-hard-newlines t)))
 
 ;; HTML mode
 (add-to-list 'auto-mode-alist '("\\.dryml$" . html-mode))

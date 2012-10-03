@@ -177,27 +177,30 @@
 ;;       (bury-buffer) (switch-to-buffer-other- frame server-buf))))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default-ispell-program-name "aspell")
  '(edit-server-new-frame-alist (quote ((name . "xEmacs TEXTAREA") (width . 80) (height . 40) (minibuffer . t) (menu-bar-lines))))
  '(ispell-program-name "aspell")
  '(js-expr-indent-offset 2)
  '(js-indent-level 2)
  '(markdown-command "maruku")
+ '(menu-bar-mode nil)
  '(rspec-use-rake-flag t)
  '(rspec-use-rvm t)
  '(safe-local-variable-values (quote ((encoding . utf-8) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby"))))
  '(server-kill-new-buffers t)
- '(shoulda-use-rvm t))
+ '(shoulda-use-rvm t)
+ '(tool-bar-mode nil)
+ '(tooltip-mode nil))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 

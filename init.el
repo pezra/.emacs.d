@@ -4,8 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (load "requirable-submodules.el")
 
-
-;; (tool-bar-mode nil)
+(tool-bar-mode nil)
 (scroll-bar-mode nil)
 ;;(set-default-font "-apple-inconsolata-medium-r-normal--17-130-72-72-m-130-iso10646-1")
 (set-default-font "-apple-envy code r-medium-r-normal--18-130-72-72-m-130-iso10646-1")
@@ -23,11 +22,7 @@
 (setq-default cursor-in-non-selected-windows 'hbar)
 (blink-cursor-mode t)
 (setq-default blink-matching-paren t)
-;; (setq-default show-trailing-whitespace nil)
-
-;; (setq-default make-backup-files nil) 
-;; (setq-default auto-save-visited-file-name t)
-;; (setq-default auto-save-timeout 1)
+(setq-default show-trailing-whitespace t)
 
 (setq-default make-backup-files nil) 
 (setq-default auto-save-visited-file-name nil)

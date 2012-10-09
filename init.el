@@ -95,8 +95,7 @@
 (setq-default wc-modeline-format "Wc[%tw]")
 
 ;; Markdown support
-(autoload 'markdown-mode "markdown-mode.el"
-  "Major mode for editing Markdown files" t)
+(require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.text$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -105,11 +104,13 @@
 (add-hook 'markdown-mode-hook 'wc-mode)
 (add-hook 'markdown-mode-hook 'longlines-mode)
 (add-hook 'markdown-mode-hook (lambda() (setq longlines-show-hard-newlines t)))
-(add-hook 'markdown-mode-hook (lambda() (local-set-key (kbd "C-c r") 'speak-paragraph)))
+(define-key markdown-mode-map (kbd "C-c r") 'speak-paragraph)
 
 ;; HTML mode
 (add-to-list 'auto-mode-alist '("\\.dryml$" . html-mode))
 (add-hook 'html-mode-hook 'wc-mode)
+(add-hook 'html-mode-hook (lambda() (local-set-key (kbd "C-c r") 'speak-paragraph)))
+
 
 ;; Ruby mode
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))

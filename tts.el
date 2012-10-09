@@ -18,21 +18,27 @@
 (defun speak-paragraph ()
   "Speak the paragraph under the point"
   (interactive)
-  (speak-region (beginning-of-paragraph) (end-of-paragraph)))
+  (speak-region (save-excursion 
+                  (beginning-of-paragraph)
+                  (point))
+                (save-excursion
+                  (end-of-paragraph)
+                  (point))))
 
 (defun beginning-of-paragraph ()
   "Return the beginning of paragraph"
-  (save-excursion 
-    (or (re-search-backward (lines-starting-with paragraph-start) nil t)
-        (beginning-of-buffer))))
+  (let ((beginning (re-search-backward (lines-starting-with paragraph-start) nil t)))
+    (if beginning
+        (goto-char beginning)
+      (beginning-of-buffer))))
 
 (defun end-of-paragraph ()
   "Returns the end of the current paragraph"
-  (save-excursion 
-    (goto-char (+ 1 (beginning-of-paragraph)))
-    (or (re-search-forward (lines-starting-with paragraph-separate) nil t)
-        (re-search-forward (lines-starting-with paragraph-start) nil t)
-        (end-of-buffer))))
+  (let ((end  (or (re-search-forward (lines-starting-with paragraph-separate) nil t)
+                  (re-search-forward (lines-starting-with paragraph-start) nil t))))
+    (if end
+        (goto-char end)
+      (end-of-buffer))))
 
 (defun lines-starting-with (pattern)
   (concat "^\\(" pattern "\\)"))

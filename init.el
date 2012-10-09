@@ -33,9 +33,12 @@
 (require 'zoom-frm)
 (global-set-key (kbd "C-+") 'zoom-in)
 (global-set-key (kbd "C--") 'zoom-out)
+(global-set-key (kbd "C-S-f") 'ns-toggle-fullscreen)
 
 (global-set-key (kbd "C-c C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-%") 'query-replace)
+
+(global-set-key (kbd "C-c m") 'magit-status)
 
 (load "mode-compile-ext.el")
 

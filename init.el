@@ -48,7 +48,9 @@
 ;; Color themes
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-high-contrast) 
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(load-theme 'solarized-light t)
 
 (require 'magit)
 
@@ -103,6 +105,7 @@
 (add-hook 'markdown-mode-hook 'wc-mode)
 (add-hook 'markdown-mode-hook 'longlines-mode)
 (add-hook 'markdown-mode-hook (lambda() (setq longlines-show-hard-newlines t)))
+(add-hook 'markdown-mode-hook (lambda() (local-set-key (kbd "C-c r") 'speak-paragraph)))
 
 ;; HTML mode
 (add-to-list 'auto-mode-alist '("\\.dryml$" . html-mode))
@@ -176,12 +179,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(default-ispell-program-name "aspell")
  '(edit-server-new-frame-alist (quote ((name . "xEmacs TEXTAREA") (width . 80) (height . 40) (minibuffer . t) (menu-bar-lines))))
- '(ispell-program-name "aspell")
+ '(ispell-program-name "/usr/local/bin/aspell")
  '(js-expr-indent-offset 2)
  '(js-indent-level 2)
- '(markdown-command "maruku")
+ '(markdown-command "/opt/github/rbenv/shims/maruku")
  '(menu-bar-mode nil)
  '(rspec-use-rake-flag t)
  '(rspec-use-rvm t)

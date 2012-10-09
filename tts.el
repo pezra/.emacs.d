@@ -15,6 +15,28 @@
   (interactive)
   (mac-key-speak-region (point-min)(point-max)))
 
+(defun speak-paragraph ()
+  "Speak the paragraph under the point"
+  (interactive)
+  (speak-region (beginning-of-paragraph) (end-of-paragraph)))
+
+(defun beginning-of-paragraph ()
+  "Return the beginning of paragraph"
+  (save-excursion 
+    (or (re-search-backward (lines-starting-with paragraph-start) nil t)
+        (beginning-of-buffer))))
+
+(defun end-of-paragraph ()
+  "Returns the end of the current paragraph"
+  (save-excursion 
+    (goto-char (+ 1 (beginning-of-paragraph)))
+    (or (re-search-forward (lines-starting-with paragraph-separate) nil t)
+        (re-search-forward (lines-starting-with paragraph-start) nil t)
+        (end-of-buffer))))
+
+(defun lines-starting-with (pattern)
+  (concat "^\\(" pattern "\\)"))
+
 (defun stop-speaking ()
   "Terminate the text-to-speech subprocess, if it is running."
   (interactive)
@@ -24,5 +46,6 @@
       (kill-buffer mybuffer)
       (beep))
     ))
+
 
 (provide 'tts)

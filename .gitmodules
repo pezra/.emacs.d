@@ -73,3 +73,6 @@
 [submodule "mo-git-blame"]
 	path = mo-git-blame
 	url = git://github.com/mbunkus/mo-git-blame.git
+[submodule "emacs-color-theme-solarized"]
+	path = emacs-color-theme-solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git

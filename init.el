@@ -7,7 +7,8 @@
 (tool-bar-mode nil)
 (scroll-bar-mode nil)
 ;;(set-default-font "-apple-inconsolata-medium-r-normal--17-130-72-72-m-130-iso10646-1")
-(set-default-font "-apple-envy code r-medium-r-normal--18-130-72-72-m-130-iso10646-1")
+;;(set-default-font "-apple-envy code r-medium-r-normal--18-130-72-72-m-130-iso10646-1")
+(set-default-font "-apple-source code pro-medium-r-normal--18-130-72-72-m-130-iso10646-1")
 
 (setq mac-allow-anti-aliasing t)
 
@@ -22,11 +23,9 @@
 (setq-default cursor-in-non-selected-windows 'hbar)
 (blink-cursor-mode t)
 (setq-default blink-matching-paren t)
-(setq-default show-trailing-whitespace t)
 
-(setq-default make-backup-files nil) 
-(setq-default auto-save-visited-file-name nil)
-(setq-default auto-save-timeout 1)
+(setq-default make-backup-files nil)
+(setq auto-save-default nil)
 
 (setq redisplay-dont-pause t)
 
@@ -39,6 +38,8 @@
 (global-set-key (kbd "C-%") 'query-replace)
 
 (global-set-key (kbd "C-c m") 'magit-status)
+(global-set-key (kbd "C-c f") 'rgrep)
+(global-set-key (kbd "C-c ^") 'join-line)
 
 (load "mode-compile-ext.el")
 
@@ -69,13 +70,14 @@
 (add-to-list 'load-path "~/.emacs.d/Enhanced-Ruby-Mode") ; must be added after any path containing old ruby-mode
 (setq enh-ruby-program "/Users/pezra/.rvm/rubies/ruby-1.9.2-p290/bin/ruby") ; so that still works if ruby points to ruby1.8
 (require 'ruby-mode)
+(add-hook 'ruby-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
 (require 'rvm)
 (require 'rspec-mode)
 
 ;(require 'shoulda-mode)
-;(setq-default shoulda-command "ruby %o '%f'") 
-;(setq-default shoulda-command "bash -lic \"cd `dirname %f`; rvm debug; echo -------; env; echo PATH: $PATH; ruby %o '%f'\"") 
+;(setq-default shoulda-command "ruby %o '%f'")
+;(setq-default shoulda-command "bash -lic \"cd `dirname %f`; rvm debug; echo -------; env; echo PATH: $PATH; ruby %o '%f'\"")
 
 (require 'coffee-mode)
 (add-hook 'coffee-mode-hook 'whitespace-mode)
@@ -124,7 +126,7 @@
 (define-project-type ruby (generic)
   (look-for "Rakefile"))
 
-(add-hook 'ruby-mode-hook 
+(add-hook 'ruby-mode-hook
           (lambda ()
             (make-local-variable 'paragraph-start)
             (setq paragraph-start (concat "@[[:alpha:]]+\\|" paragraph-start))
@@ -160,9 +162,9 @@
 
 ;; emacs client
 (server-start)
-(add-hook 'server-switch-hook 
+(add-hook 'server-switch-hook
 	  (lambda nil
-	    (let ((server-buf (current-buffer))) 
+	    (let ((server-buf (current-buffer)))
 	      (bury-buffer)
 	      (switch-to-buffer-other-frame server-buf))))
 
@@ -174,8 +176,8 @@
 
 (require 'tts)
 
-;;(lambda nil 
-;;  (let (server-buf) (setq server-buf (current-buffer)) 
+;;(lambda nil
+;;  (let (server-buf) (setq server-buf (current-buffer))
 ;;       (bury-buffer) (switch-to-buffer-other- frame server-buf))))
 
 (custom-set-variables
@@ -228,8 +230,8 @@
   (package-initialize))
 
 
-;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph       
-;;; Takes a multi-line paragraph and makes it into a single line of text.       
+;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
+;;; Takes a multi-line paragraph and makes it into a single line of text.
 (defun unfill-paragraph ()
   (interactive)
   (let ((fill-column (point-max)))
@@ -249,5 +251,3 @@
                                                      plain-tex-mode))
                 (let ((mark-even-if-inactive transient-mark-mode))
                   (indent-region (region-beginning) (region-end) nil))))))
-
-

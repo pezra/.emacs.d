@@ -29,6 +29,13 @@
 
 (setq redisplay-dont-pause t)
 
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" .
+               "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+
 (require 'zoom-frm)
 (global-set-key (kbd "C-+") 'zoom-in)
 (global-set-key (kbd "C--") 'zoom-out)
@@ -40,8 +47,6 @@
 (global-set-key (kbd "C-c m") 'magit-status)
 (global-set-key (kbd "C-c f") 'rgrep)
 (global-set-key (kbd "C-c ^") 'join-line)
-
-(load "mode-compile-ext.el")
 
 ;; Uniquify
 (require 'uniquify)
@@ -193,7 +198,8 @@
  '(js-indent-level 2)
  '(markdown-command "/opt/github/rbenv/shims/maruku")
  '(menu-bar-mode nil)
- '(rspec-use-rake-flag t)
+ '(rspec-use-bundler-when-possible nil)
+ '(rspec-use-rake-flag nil)
  '(rspec-use-rvm t)
  '(safe-local-variable-values (quote ((encoding . utf-8) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby"))))
  '(server-kill-new-buffers t)
@@ -219,16 +225,6 @@
 ;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (global-auto-revert-mode)
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
 
 ;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
 ;;; Takes a multi-line paragraph and makes it into a single line of text.
@@ -251,3 +247,4 @@
                                                      plain-tex-mode))
                 (let ((mark-even-if-inactive transient-mark-mode))
                   (indent-region (region-beginning) (region-end) nil))))))
+

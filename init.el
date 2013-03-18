@@ -12,9 +12,6 @@
 
 (setq mac-allow-anti-aliasing t)
 
-(setq mac-option-modifier 'meta)
-(setq mac-command-modifier 'control)
-
 (setq-default save-interprogram-paste-before-kill nil)
 (setq-default kill-do-not-save-duplicates t)
 (setq-default word-wrap t)
@@ -25,7 +22,12 @@
 (setq-default blink-matching-paren t)
 
 (setq-default make-backup-files nil)
-(setq auto-save-default nil)
+
+;; auto saving
+(setq auto-save-default t)
+(setq auto-save-visited-file-name t)
+(setq auto-save-interval 20) ; twenty keystrokes
+(setq auto-save-timeout 1) ; 1 second of idle time
 
 (setq redisplay-dont-pause t)
 
@@ -34,19 +36,6 @@
              '("marmalade" .
                "http://marmalade-repo.org/packages/"))
 (package-initialize)
-
-
-(require 'zoom-frm)
-(global-set-key (kbd "C-+") 'zoom-in)
-(global-set-key (kbd "C--") 'zoom-out)
-(global-set-key (kbd "C-S-f") 'ns-toggle-fullscreen)
-
-(global-set-key (kbd "C-c C-;") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-%") 'query-replace)
-
-(global-set-key (kbd "C-c m") 'magit-status)
-(global-set-key (kbd "C-c f") 'rgrep)
-(global-set-key (kbd "C-c ^") 'join-line)
 
 ;; Uniquify
 (require 'uniquify)
@@ -248,3 +237,5 @@
                 (let ((mark-even-if-inactive transient-mark-mode))
                   (indent-region (region-beginning) (region-end) nil))))))
 
+
+(load "keybindings.el")

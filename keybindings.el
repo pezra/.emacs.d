@@ -15,15 +15,17 @@
 
 ;; search
 (define-key my-keys-minor-mode-map  (kbd "H-f") 'isearch-forward)
-(define-key my-keys-minor-mode-map  (kbd "H-g") 'isearch-repeat-forward)
 (define-key my-keys-minor-mode-map  (kbd "H-S-f") 'isearch-backward)
+(define-key my-keys-minor-mode-map  (kbd "H-g") 'isearch-repeat-forward)
+(define-key my-keys-minor-mode-map  (kbd "H-S-g") 'isearch-repeat-backward)
 (define-key my-keys-minor-mode-map  (kbd "H-r") 'isearch-query-replace-regexp)
 (define-key my-keys-minor-mode-map  (kbd "H-F") 'rgrep)
 
 
 ;; buffer/file mangement
 (define-key my-keys-minor-mode-map  (kbd "H-e") 'ido-switch-buffer)
-(define-key my-keys-minor-mode-map  (kbd "H-N") 'ido-find-file)
+(define-key my-keys-minor-mode-map  (kbd "H-n") 'ido-find-file)
+(define-key my-keys-minor-mode-map  (kbd "H-o") 'ido-find-file)
 (define-key my-keys-minor-mode-map  (kbd "H-w") 'ido-kill-buffer)
 
 ;; misc
@@ -35,10 +37,11 @@
 ;; Movement
 (define-key my-keys-minor-mode-map  (kbd "H-<backspace>") 'backward-kill-word)
 
+
 ;; window managment
 (define-key my-keys-minor-mode-map  (kbd "H-1") 'delete-other-windows)
 (define-key my-keys-minor-mode-map  (kbd "H-o") 'other-window)
-
+(define-key my-keys-minor-mode-map  (kbd "C-<tab>") 'other-window)
 
 (global-set-key (kbd "C-c m") 'magit-status)
 (global-set-key (kbd "C-c ^") 'join-line)

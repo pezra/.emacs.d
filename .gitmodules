@@ -1,72 +1,69 @@
 [submodule "Enhanced-Ruby-Mode"]
 	path = Enhanced-Ruby-Mode
-	url = https://github.com/jacott/Enhanced-Ruby-Mode.git
+	url = git@github.com:jacott/Enhanced-Ruby-Mode.git
 [submodule "coffee-mode"]
 	path = coffee-mode
-	url = https://github.com/defunkt/coffee-mode.git
+	url = git@github.com:defunkt/coffee-mode.git
 [submodule "color-theme"]
 	path = color-theme
-	url = https://github.com/my8bird/emacs-color-theme.git
+	url = git@github.com:my8bird/emacs-color-theme.git
 [submodule "cucumber.el"]
 	path = cucumber.el
-	url = https://github.com/michaelklishin/cucumber.el.git
+	url = git@github.com:michaelklishin/cucumber.el.git
 [submodule "emacs_chrome"]
 	path = emacs_chrome
-	url = https://github.com/stsquad/emacs_chrome.git
+	url = git@github.com:stsquad/emacs_chrome.git
 [submodule "eproject"]
 	path = eproject
-	url = https://github.com/jrockway/eproject.git
+	url = git@github.com:jrockway/eproject.git
 [submodule "frame-cmds"]
 	path = frame-cmds
-	url = https://github.com/emacsmirror/frame-cmds.git
+	url = git@github.com:emacsmirror/frame-cmds.git
 [submodule "frame-fns"]
 	path = frame-fns
-	url = https://github.com/emacsmirror/frame-fns.git
+	url = git@github.com:emacsmirror/frame-fns.git
 [submodule "gist.el"]
 	path = gist.el
-	url = https://github.com/defunkt/gist.el.git
+	url = git@github.com:defunkt/gist.el.git
 [submodule "gh.el"]
 	path = gh.el
-	url = https://github.com/sigma/gh.el.git
+	url = git@github.com:sigma/gh.el.git
 [submodule "pcache"]
 	path = pcache
-	url = https://github.com/sigma/pcache.git
+	url = git@github.com:sigma/pcache.git
 [submodule "logito"]
 	path = logito
-	url = https://github.com/sigma/logito.git
+	url = git@github.com:sigma/logito.git
 [submodule "tabulated-list.el"]
 	path = tabulated-list.el
-	url = https://github.com/sigma/tabulated-list.el.git
+	url = git@github.com:sigma/tabulated-list.el.git
 [submodule "magit"]
 	path = magit
-	url = https://github.com/magit/magit.git
+	url = git@github.com:magit/magit.git
 [submodule "markdown-mode"]
 	path = markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
 [submodule "mode-compile"]
 	path = mode-compile
-	url = https://github.com/emacsmirror/mode-compile.git
-[submodule "nxml-mode"]
-	path = nxml-mode
-	url = https://github.com/emacsmirror/nxml.git
+	url = git@github.com:emacsmirror/mode-compile.git
 [submodule "n3-mode"]
 	path = n3-mode
-	url = https://github.com/kurtjx/n3-mode-for-emacs
+	url = git@github.com:kurtjx/n3-mode-for-emacs
 [submodule "rspec-mode"]
 	path = rspec-mode
 	url = git@github.com:pezra/rspec-mode.git
 [submodule "rvm.el"]
 	path = rvm.el
-	url = https://github.com/senny/rvm.el.git
+	url = git@github.com:senny/rvm.el.git
 [submodule "scala-mode"]
 	path = scala-mode
-	url = https://github.com/haxney/scala-mode.git
+	url = git@github.com:haxney/scala-mode.git
 [submodule "shoulda-mode"]
 	path = shoulda-mode
 	url = git@github.com:pezra/shoulda-mode.git
 [submodule "zoom-frm"]
 	path = zoom-frm
-	url = https://github.com/emacsmirror/zoom-frm.git
+	url = git@github.com:emacsmirror/zoom-frm.git
 [submodule "wc-mode"]
 	path = wc-mode
 	url = git://github.com/bnbeckwith/wc-mode.git
@@ -75,4 +72,4 @@
 	url = git://github.com/mbunkus/mo-git-blame.git
 [submodule "emacs-color-theme-solarized"]
 	path = emacs-color-theme-solarized
-	url = https://github.com/sellout/emacs-color-theme-solarized.git
+	url = git@github.com:sellout/emacs-color-theme-solarized.git

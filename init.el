@@ -1,241 +1,157 @@
-(setenv "PATH"
-	(concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"
+                       (getenv "HOME") "/.rbenv/bin:"
+                       "/usr/local/bin:"
+                       (getenv "PATH")))
+
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
+                      (cons
+                       (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
 
 (add-to-list 'load-path "~/.emacs.d")
-(load "requirable-submodules.el")
 
-(tool-bar-mode nil)
-(scroll-bar-mode nil)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
+
+(setq
+ el-get-sources
+ '((:name rspec-mode
+       :type git
+       :url "git://github.com/pezra/rspec-mode.git"
+       :features rspec-mode
+       :compile "rspec-mode.el")
+))
+
+(setq my:el-get-packages
+      '(el-get))
+
+(setq my:el-get-packages
+      (append
+       my:el-get-packages
+       (loop for src in el-get-sources collect (el-get-source-name src))))
+
+
+(el-get 'sync my:el-get-packages)
+
 ;;(set-default-font "-apple-inconsolata-medium-r-normal--17-130-72-72-m-130-iso10646-1")
-;;(set-default-font "-apple-envy code r-medium-r-normal--18-130-72-72-m-130-iso10646-1")
-(set-default-font "-apple-source code pro-medium-r-normal--18-130-72-72-m-130-iso10646-1")
+;;(set-default-font "-apple-envy code r-medium-r-normal--20-130-72-72-m-130-iso10646-1")
+(set-default-font "-apple-source code pro-medium-r-normal--22-130-72-72-m-130-iso10646-1")
 
-(setq mac-allow-anti-aliasing t)
-
-(setq-default save-interprogram-paste-before-kill nil)
-(setq-default kill-do-not-save-duplicates t)
-(setq-default word-wrap t)
-
-(setq-default cursor-type 'hollow)
-(setq-default cursor-in-non-selected-windows 'hbar)
-(blink-cursor-mode t)
-(setq-default blink-matching-paren t)
-
-(setq-default make-backup-files nil)
-
-;; auto saving
-(setq auto-save-default t)
-(setq auto-save-visited-file-name t)
-(setq auto-save-interval 20) ; twenty keystrokes
-(setq auto-save-timeout 1) ; 1 second of idle time
-
-(setq redisplay-dont-pause t)
-
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" .
-               "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-;; Uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward)
-
-(setq-default indent-tabs-mode nil)
-
-;; Color themes
-(require 'color-theme)
-(color-theme-initialize)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
-(load-theme 'solarized-light t)
-
-(require 'magit)
-
-
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-
-(add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
-
-(require 'scala-mode)
-
-(add-to-list 'load-path "~/.emacs.d/Enhanced-Ruby-Mode") ; must be added after any path containing old ruby-mode
-(setq enh-ruby-program "/Users/pezra/.rvm/rubies/ruby-1.9.2-p290/bin/ruby") ; so that still works if ruby points to ruby1.8
-(require 'ruby-mode)
-(add-hook 'ruby-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
-
-(require 'rvm)
-(require 'rspec-mode)
-
-;(require 'shoulda-mode)
-;(setq-default shoulda-command "ruby %o '%f'")
-;(setq-default shoulda-command "bash -lic \"cd `dirname %f`; rvm debug; echo -------; env; echo PATH: $PATH; ruby %o '%f'\"")
-
-(require 'coffee-mode)
-(add-hook 'coffee-mode-hook 'whitespace-mode)
-(setq-default coffee-tab-width 2)
-
-(require 'eproject)
-(require 'eproject-extras)
-
-(require 'flyspell)
-(add-hook 'ruby-mode-hook 'flyspell-prog-mode)
-(add-hook 'css-mode-hook 'flyspell-prog-mode)
-
-;; Cucumber support
-(require 'feature-mode)
-(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
-(add-hook 'feature-mode-hook 'flyspell-mode)
-
-;; Word count mode
-(require 'wc-mode)
-(setq-default wc-modeline-format "Wc[%tw]")
-
-;; Markdown support
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\\.text$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
-(add-hook 'markdown-mode-hook 'flyspell-mode)
-(add-hook 'markdown-mode-hook 'wc-mode)
-(add-hook 'markdown-mode-hook 'longlines-mode)
-(add-hook 'markdown-mode-hook (lambda() (setq longlines-show-hard-newlines t)))
-(define-key markdown-mode-map (kbd "C-c r") 'speak-paragraph)
-
-;; HTML mode
-(add-to-list 'auto-mode-alist '("\\.dryml$" . html-mode))
-(add-hook 'html-mode-hook 'wc-mode)
-(add-hook 'html-mode-hook (lambda() (local-set-key (kbd "C-c r") 'speak-paragraph)))
-
-
-;; Ruby mode
-(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rxml$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.jbuilder$" . ruby-mode))
 
-(define-project-type ruby (generic)
-  (look-for "Rakefile"))
+(add-to-list 'auto-mode-alist '("\\.yml\\.example$" . yaml-mode))
 
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (make-local-variable 'paragraph-start)
-            (setq paragraph-start (concat "@[[:alpha:]]+\\|" paragraph-start))
-            (make-local-variable 'paragraph-separate)
-            (setq paragraph-separate (concat "[ \t]*# +---+[ \t]*\\|[ \t]*# @[[:alpha:]]+[ \t]*\\|" paragraph-separate))))
+(require 'uniquify)
 
-(add-hook 'ruby-mode-hook (lambda () (show-paren-mode t)))
-(add-hook 'ruby-mode-hook (lambda () (visual-line-mode t)))
-(add-hook 'ruby-mode-hook (lambda () (subword-mode t)))
+(add-hook 'after-init-hook
+  (lambda () 
+     (global-auto-highlight-symbol-mode t)
 
-;; RNC mode
-(require 'rnc-mode)
-(add-to-list 'auto-mode-alist '("\\.rnc$" . rnc-mode))
+     (add-hook 'feature-mode-hook (lambda () (nlinum-mode t)))
+     (add-hook 'ruby-mode-hook (lambda () (nlinum-mode t)))
+     (ido-mode t)
+     (global-auto-revert-mode t)
 
-;; nXML mode
-(require 'nxml-mode)
-(add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.xsl$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.rng$" . nxml-mode))
+     (add-hook 'markdown-mode-hook (lambda () (flyspell-mode t)))
+     (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
+     (add-hook 'feature-mode-hook (lambda () (flyspell-mode t)))
+     (add-hook 'ruby-mode-hook (lambda () (flyspell-prog-mode)))
 
-;; gist
-(require 'gist)
 
-;; N3
-(autoload 'n3-mode "n3-mode" "Major mode for OWL or N3 files" t)
-(add-to-list 'auto-mode-alist '("\\.ttl$" . n3-mode))
-(add-to-list 'auto-mode-alist '("\\.n3$" . n3-mode))
-(add-to-list 'auto-mode-alist '("\\.owl$" . n3-mode))
-
-;; Turn on font lock when in n3 mode
-(add-hook 'n3-mode-hook
-          'turn-on-font-lock)
-
-;; emacs client
-(server-start)
-(add-hook 'server-switch-hook
-	  (lambda nil
-	    (let ((server-buf (current-buffer)))
-	      (bury-buffer)
-	      (switch-to-buffer-other-frame server-buf))))
-
-(add-hook 'server-done-hook 'delete-frame)
-
-(require 'edit-server)
-(edit-server-start)
-(add-hook 'edit-server-start-hook 'markdown-mode)
-
-(require 'tts)
-
-;;(lambda nil
-;;  (let (server-buf) (setq server-buf (current-buffer))
-;;       (bury-buffer) (switch-to-buffer-other- frame server-buf))))
+     (load "keybindings.el")
+))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
- '(default-ispell-program-name "aspell")
- '(edit-server-new-frame-alist (quote ((name . "xEmacs TEXTAREA") (width . 80) (height . 40) (minibuffer . t) (menu-bar-lines))))
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector (vector "#52676f" "#c60007" "#728a05" "#a57705" "#2075c7" "#c61b6e" "#259185" "#fcf4dc"))
+ '(auto-save-default t)
+ '(auto-save-interval 20)
+ '(auto-save-timeout 1)
+ '(auto-save-visited-file-name t)
+ '(blink-cursor-mode t)
+ '(blink-matching-paren nil)
+ '(create-lockfiles nil)
+ '(css-indent-offset 2)
+ '(cursor-in-non-selected-windows t)
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-blue)))
+ '(custom-safe-themes (quote ("31bfef452bee11d19df790b82dea35a3b275142032e06c6ecdc98007bf12466c" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
+ '(default-frame-alist (quote ((vertical-scroll-bars) (font . "source code pro-22"))))
+ '(edit-server-default-major-mode (quote markdown-mode))
+ '(edit-server-new-frame-alist (quote ((name . "Edit with Emacs FRAME") (width . 80) (height . 200) (minibuffer . t) (menu-bar-lines) (font . "source code pro-22"))))
+ '(fci-rule-color "#e9e2cb")
+ '(global-edit-server-edit-mode t)
+ '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "bower_components")))
+ '(ido-create-new-buffer (quote always))
+ '(ido-enable-flex-matching t)
+ '(ido-everywhere t)
+ '(ido-use-filename-at-point (quote guess))
+ '(indent-tabs-mode nil)
+ '(initial-frame-alist (quote ((vertical-scroll-bars))))
  '(ispell-program-name "/usr/local/bin/aspell")
- '(js-expr-indent-offset 2)
  '(js-indent-level 2)
- '(markdown-command "/opt/github/rbenv/shims/maruku")
- '(menu-bar-mode nil)
- '(rspec-use-bundler-when-possible nil)
- '(rspec-use-rake-flag nil)
- '(rspec-use-rvm t)
- '(safe-local-variable-values (quote ((encoding . utf-8) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby"))))
- '(server-kill-new-buffers t)
- '(shoulda-use-rvm t)
+ '(kill-do-not-save-duplicates t)
+ '(markdown-command "/usr/local/bin/markdown")
+ '(ns-antialias-text t)
+ '(rspec-spec-command "rspec")
+ '(rspec-use-bundler-when-possible t)
+ '(rspec-use-rake-when-possible nil)
+ '(safe-local-variable-values (quote ((rspec-use-opts-file-when-available) (encoding . utf-8))))
+ '(save-interprogram-paste-before-kill t)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(show-trailing-whitespace t)
  '(tool-bar-mode nil)
- '(tooltip-mode nil))
-
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map (quote ((20 . "#c60007") (40 . "#bd3612") (60 . "#a57705") (80 . "#728a05") (100 . "#259185") (120 . "#2075c7") (140 . "#c61b6e") (160 . "#5859b7") (180 . "#c60007") (200 . "#bd3612") (220 . "#a57705") (240 . "#728a05") (260 . "#259185") (280 . "#2075c7") (300 . "#c61b6e") (320 . "#5859b7") (340 . "#c60007") (360 . "#bd3612"))))
+ '(vc-annotate-very-old-color nil)
+ '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:height 220 :width normal :foundry "apple" :family "Source_Code_Pro"))))
+ '(trailing-whitespace ((t (:background "Yellow" :foreground "Yellow" :inverse-video t :underline nil)))))
 
-
-;; (require 'ansi-color)
-;; (defun colorize-compilation-buffer ()
-;;   (toggle-read-only)
-;;   (ansi-color-apply-on-region (point-min) (point-max))
-;;   (toggle-read-only))
-;; (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-;;(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
-;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-(global-auto-revert-mode)
-
-;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
-;;; Takes a multi-line paragraph and makes it into a single line of text.
-(defun unfill-paragraph ()
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil)))
-
-(global-set-key (kbd "M-Q") 'unfill-paragraph)
-
-(dolist (command '(yank yank-pop))
-  (eval `(defadvice ,command (after indent-region activate)
-           (and (not current-prefix-arg)
-                (member major-mode '(emacs-lisp-mode lisp-mode
-                                                     clojure-mode    scheme-mode
-                                                     haskell-mode    ruby-mode
-                                                     rspec-mode      python-mode
-                                                     c-mode          c++-mode
-                                                     objc-mode       latex-mode
-                                                     plain-tex-mode))
-                (let ((mark-even-if-inactive transient-mark-mode))
-                  (indent-region (region-beginning) (region-end) nil))))))
-
-
-(load "keybindings.el")
+(eval-after-load "ruby-mode"
+'(defadvice ruby-indent-line (after line-up-args activate)
+  (let (indent prev-indent arg-indent)
+    (save-excursion
+      (back-to-indentation)
+      (when (zerop (car (syntax-ppss)))
+        (setq indent (current-column))
+        (skip-chars-backward " \t\n")
+        (when (eq ?, (char-before))
+          (ruby-backward-sexp)
+          (back-to-indentation)
+          (setq prev-indent (current-column))
+          (skip-syntax-forward "w_.")
+          (skip-chars-forward " ")
+          (setq arg-indent (current-column)))))
+    (when prev-indent
+      (let ((offset (- (current-column) indent)))
+        (cond ((< indent prev-indent)
+               (indent-line-to prev-indent))
+              ((= indent prev-indent)
+               (indent-line-to arg-indent)))
+        (when (> offset 0) (forward-char offset)))))))
